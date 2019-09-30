@@ -228,7 +228,8 @@ class APNSNotification(object):
 
     deviceToken = None
 
-    maxPayloadLength = 256
+    # Maximum payload size of binary interface: https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html
+    maxPayloadLength = 2048
     deviceTokenLength = 32
 
     properties = None
