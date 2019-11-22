@@ -14,8 +14,8 @@ import os
 import socket
 import subprocess
 
-from .apnsexceptions import *
-from .utils import *
+from apnsexceptions import *
+from utils import *
 
 
 __all__ = ('APNSConnectionContext', 'OpenSSLCommandLine', \
@@ -91,10 +91,10 @@ class OpenSSLCommandLine(APNSConnectionContext):
 
         std_out = pipe.stdout
         if self.debug:
-            print("-------------- SSL Debug Output --------------")
-            print(command)
-            print("----------------------------------------------")
-            print(std_out.read())
+            print "-------------- SSL Debug Output --------------"
+            print command
+            print "----------------------------------------------"
+            print std_out.read()
             std_out.close()
         pipe.wait()
 
