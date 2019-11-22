@@ -14,7 +14,7 @@ def badge(wrapper, token):
     message.tokenBase64(token)
 
     message.badge(3)
-    print message._build()
+    print(message._build())
     wrapper.append(message)
 
 def sound(wrapper, token):
@@ -22,7 +22,7 @@ def sound(wrapper, token):
     message.tokenBase64(token)
 
     message.sound("default")
-    print message._build()
+    print(message._build())
     wrapper.append(message)
 
 
@@ -44,7 +44,7 @@ def alert(wrapper, token):
     property = APNSProperty("acme", (1, "custom string argument"))
     message.appendProperty(property)
 
-    print message._build()
+    print(message._build())
     wrapper.append(message)
 
 
@@ -73,7 +73,7 @@ def testAPNSWrapper():
     feedback = APNSFeedbackWrapper(cert_path, sandbox = True)
     feedback.receive()
 
-    print "\n".join(["> " + base64.standard_b64encode(y) for x, y in feedback])
+    print("\n".join(["> " + base64.standard_b64encode(y) for x, y in feedback]))
 
 
 

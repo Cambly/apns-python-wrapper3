@@ -14,10 +14,10 @@ import struct
 import base64
 import binascii
 
-from __init__ import *
-from connection import *
-from apnsexceptions import *
-from utils import _doublequote
+from .__init__ import *
+from .connection import *
+from .apnsexceptions import *
+from .utils import _doublequote
 
 NULL = 'null'
 
@@ -133,12 +133,12 @@ class APNSProperty(object):
         if isinstance(self.data, (int, float)):
             return "%s%s" % (name, str(self.data))
 
-        if isinstance(self.data, str) or isinstance(self.data, unicode):
+        if isinstance(self.data, str) or isinstance(self.data, str):
             return '%s"%s"' % (name, _doublequote(self.data))
 
         if isinstance(self.data, (tuple, list)):
-            arguments = map(lambda x: if_else(isinstance(x, str), \
-                            '"%s"' % _doublequote(str(x)), str(x)), self.data)
+            arguments = [if_else(isinstance(x, str), \
+                            '"%s"' % _doublequote(str(x)), str(x)) for x in self.data]
             return "%s[%s]" % (name, ",".join(arguments))
 
         return '%s%s' % (name, NULL)
@@ -306,7 +306,7 @@ class APNSNotification(object):
         Add an alert to the Wrapper. It should be string or
         APNSAlert object instance.
         """
-        if not isinstance(alert, str) and not isinstance(alert, unicode) and \
+        if not isinstance(alert, str) and not isinstance(alert, str) and \
             not isinstance(alert, APNSAlert):
             raise APNSTypeError("Wrong type of alert argument. Argument s"\
                                 "hould be String, Unicode string or an "\
