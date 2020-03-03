@@ -133,7 +133,7 @@ class APNSProperty(object):
         if isinstance(self.data, (int, float)):
             return "%s%s" % (name, str(self.data))
 
-        if isinstance(self.data, str) or isinstance(self.data, str):
+        if isinstance(self.data, str):
             return '%s"%s"' % (name, _doublequote(self.data))
 
         if isinstance(self.data, (tuple, list)):
@@ -306,8 +306,8 @@ class APNSNotification(object):
         Add an alert to the Wrapper. It should be string or
         APNSAlert object instance.
         """
-        if not isinstance(alert, str) and not isinstance(alert, str) and \
-            not isinstance(alert, APNSAlert):
+        if not isinstance(alert, str) and not isinstance(alert, bytes)\
+            and not isinstance(alert, APNSAlert):
             raise APNSTypeError("Wrong type of alert argument. Argument s"\
                                 "hould be String, Unicode string or an "\
                                 "instance of APNSAlert object")
