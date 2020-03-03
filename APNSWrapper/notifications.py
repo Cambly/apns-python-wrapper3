@@ -364,6 +364,9 @@ class APNSNotification(object):
             raise APNSPayloadLengthError("Length of Payload more "\
                                     "than %d bytes." % self.maxPayloadLength)
 
+        if isinstance(payload, str):
+            payload = payload.encode('utf-8')
+
         return payload
 
     def payload(self):
