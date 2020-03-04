@@ -209,6 +209,7 @@ class APNSNotificationWrapper(object):
             plen = len(p)
             messages.append(struct.pack('%ds' % plen, p))
 
+        messages = [message.decode() for message in messages]
         message = "".join(messages)
         self.connection.write(message)
 
