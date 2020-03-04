@@ -13,6 +13,7 @@
 import struct
 import base64
 import binascii
+import logging
 
 from .__init__ import *
 from .connection import *
@@ -209,8 +210,9 @@ class APNSNotificationWrapper(object):
             plen = len(p)
             messages.append(struct.pack('%ds' % plen, p))
 
-        messages = [message.decode() for message in messages]
-        message = "".join(messages)
+        logging.info('messages: %s' % messages)
+        str_messages = [if_else(isinstance(x, str), x, x.decode() for x in messages]
+        message = "".join(str_messages)
         self.connection.write(message)
 
         return True
