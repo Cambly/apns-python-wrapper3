@@ -211,7 +211,7 @@ class APNSNotificationWrapper(object):
             messages.append(struct.pack('%ds' % plen, p))
 
         logging.info('messages: %s' % messages)
-        str_messages = [if_else(isinstance(x, str), x, x.decode()) for x in messages]
+        str_messages = [if_else(isinstance(x, str), x, x.decode('iso-8859-1')) for x in messages]
         message = "".join(str_messages)
         self.connection.write(message)
 
