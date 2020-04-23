@@ -275,7 +275,7 @@ class APNSNotification(object):
     def unbadge(self):
         """Simple shorcut to remove badge from your application.
         """
-        self.badge(0)
+        self.badgeValue = 0
         return self
 
     def badge(self, num=None):
@@ -343,7 +343,7 @@ class APNSNotification(object):
         if self.soundValue:
             apsKeys.append('"sound":"%s"' % _doublequote(self.soundValue))
 
-        if self.badgeValue:
+        if self.badgeValue is not None:
             apsKeys.append('"badge":%d' % int(self.badgeValue))
 
         if self.alertObject != None:
